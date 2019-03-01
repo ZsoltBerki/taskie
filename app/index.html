@@ -3,8 +3,14 @@
     <meta charset="UTF-8">
     <title>Electron testing</title>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="js/client.bundle.js"></script>
 </head>
 <body>
     <h1>Testing electron</h1>
+    <div id="react-app"></div>
+
+    <script type="text/javascript">
+      client.render("react-app");
+    </script>
 </body>
 </html>

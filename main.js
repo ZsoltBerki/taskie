@@ -6,12 +6,14 @@ const WINDOW_HEIGHT = 600;
 const windowSettings = {
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT
-}
+};
 
-const electron = require('electron');
+const {app, BrowserWindow} = require('electron');
 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const debug = require('electron-debug');
+
+//TODO make this appear in dev mode only
+debug();
 
 let mainWindow = null;
 
