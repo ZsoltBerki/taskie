@@ -1,0 +1,27 @@
+{
+  "name": "taskie",
+  "version": "0.0.1",
+  "description": "Lightweight task manager app.",
+  "main": "main.js",
+  "scripts": {
+    "with-electron": "node_modules/electron/cli.js .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZsoltBerki/taskie.git"
+  },
+  "keywords": [
+    "task",
+    "manager"
+  ],
+  "author": "Zsolt Berki",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ZsoltBerki/taskie/issues"
+  },
+  "homepage": "https://github.com/ZsoltBerki/taskie#readme",
+  "dependencies": {
+    "electron": "^4.0.6"
+  }
+}
