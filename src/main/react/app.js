@@ -8,7 +8,6 @@ const store = createStore();
 export default () => {
   return (
     <Provider store={store}>
-      <h1>Test React with Electron</h1>
       <MainView />
     </Provider>
   );

@@ -1,8 +1,12 @@
 import createReducer from './utils/createReducer';
 import ca from './utils/createAction';
 
+import dummyTasks from './dummy/dummyTasks.json'
+
 const initialState = {
-  number: 0
+  number: 0,
+  tasks: dummyTasks,
+  selectedTask: null
 };
 
 const INCREMENT_NUMBER = 'INCREMENT_NUMBER';
