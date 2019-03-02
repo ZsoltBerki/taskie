@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TaskListElement = ({title, className}) => {
+const TaskListElement = ({title, className, onClick}) => {
   return (
-    <div className={`task-list-element ${className}`}>
+    <div
+      className={`task-list-element ${className}`}
+      onClick={onClick}
+    >
       <span>{title}</span>
     </div>
   )
@@ -12,6 +15,7 @@ const TaskListElement = ({title, className}) => {
 TaskListElement.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default TaskListElement;

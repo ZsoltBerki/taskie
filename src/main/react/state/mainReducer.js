@@ -4,22 +4,21 @@ import ca from './utils/createAction';
 import dummyTasks from './dummy/dummyTasks.json'
 
 const initialState = {
-  number: 0,
   tasks: dummyTasks,
   selectedTask: null
 };
 
-const INCREMENT_NUMBER = 'INCREMENT_NUMBER';
+const SELECT_TASK = 'SELECT_TASK';
 
 const ACTION_HANDLERS = {
-  [INCREMENT_NUMBER]: (state, { payload }) => ({
+  [SELECT_TASK]: (state, { payload }) => ({
     ...state,
-    number: state.number + payload
+    selectedTask: payload
   })
 };
 
-export const incrementNumber = number => dispatch => {
-  dispatch(ca(INCREMENT_NUMBER)(number));
+export const selectTask = task => dispatch => {
+  dispatch(ca(SELECT_TASK)(task));
 };
 
 export default createReducer(ACTION_HANDLERS, initialState);
