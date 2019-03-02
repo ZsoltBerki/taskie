@@ -7,9 +7,7 @@ export default (initialState = {}, namespace) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [
-    thunk,
-  ];
+  const middleware = [thunk];
 
   // ======================================================
   // Store Enhancers

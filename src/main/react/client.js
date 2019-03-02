@@ -4,8 +4,5 @@ import App from './app';
 
 export function render(id) {
   console.log(id);
-  ReactDOM.render(
-    <App />,
-    document.getElementById(id)
-  );
+  ReactDOM.render(<App />, document.getElementById(id));
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.common.js",
     "with-electron": "node_modules/electron/cli.js .",
+    "lintfix": "./node_modules/eslint/bin/eslint.js ./src/main/react/ --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -44,10 +45,23 @@
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "eslint": "^5.15.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-flowtype": "^3.4.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "path": "^0.12.7",
+    "prettier": "^1.16.4",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "./node_modules/eslint/bin/eslint.js --fix",
+      "git add"
+    ]
   }
 }
