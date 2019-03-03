@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TaskListView from '../task-list/TaskListContainer'
 import TaskDetailView from '../task-detail/TaskDetailContainer'
+import styled from 'styled-components';
 
-const MainView = () => {
+const MainView = ({className}) => {
   return (
-    <div>
+    <div className={className}>
       <TaskListView />
       <TaskDetailView />
     </div>
@@ -15,4 +16,7 @@ const MainView = () => {
 MainView.propTypes = {
 };
 
-export default MainView;
+export default styled(MainView)`
+    display: flex;
+    width: 100%;
+`;

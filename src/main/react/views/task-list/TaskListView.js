@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import TaskListElement from '../../components/TaskListElement'
 
-const TaskListView = ({ tasks, selectTask }) => {
+const TaskListView = ({ tasks, selectTask, className }) => {
   return (
-    <div className={"view-task-list"}>
+    <div className={"view-task-list " + className}>
       {tasks.map((task, id) => (
         <TaskListElement
           key={id}
@@ -19,7 +20,10 @@ const TaskListView = ({ tasks, selectTask }) => {
 
 TaskListView.propTypes = {
   tasks: PropTypes.any,
-  selectTask: PropTypes.func
+  selectTask: PropTypes.func,
+  className: PropTypes.string
 };
 
-export default TaskListView;
+export default styled(TaskListView)`
+    margin-right: 30px;
+`;
