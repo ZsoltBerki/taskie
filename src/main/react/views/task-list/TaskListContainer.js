@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import TaskListView from './TaskListView';
-import { selectTask } from '../../state/mainReducer';
+import { selectTask, floatTask, floatOverTask, dropOver } from '../../state/mainReducer';
 
 const mapStateToProps = state => ({
-  tasks: state.main.tasks
+  tasks: state.main.tasks,
+  floatedTask: state.main.floatedTask,
+  floatedOverTask: state.main.floatedOverTask
 });
 
 const mapActionCreator = {
-  selectTask
+  selectTask, floatTask, floatOverTask, dropOver
 };
 
 export default connect(

@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TaskListElement = ({title, className, onClick}) => {
+const TaskListElement = ({title, className, onClick,
+                           isDragged, isDraggedOver,
+                           onDragStart, onDragEnd, onDragEnter}) => {
   return (
     <div
-      className={`task-list-element ${className}`}
+      className={`droppable task-list-element ${className} ${isDragged ? 'dragged' : ''} ${isDraggedOver ? 'dragged-over' : ''}`}
       onClick={onClick}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onDragEnter={onDragEnter}
+      draggable
     >
       <span>{title}</span>
     </div>
@@ -16,7 +22,12 @@ const TaskListElement = ({title, className, onClick}) => {
 TaskListElement.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  onDragStart: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  onDragEnter: PropTypes.func,
+  isDragged: PropTypes.bool,
+  isDraggedOver: PropTypes.bool
 };
 
 export default styled(TaskListElement)`
@@ -30,5 +41,17 @@ export default styled(TaskListElement)`
   
   &:hover {
     background-color: #eeeeee
+  }
+  
+  &.dragged{
+    background-color: #eeeeee
+  }
+  
+  &.dragged-over{
+    margin-top: 38px;
+    background: none;
+    &:hover {
+      background-color: #none
+    }
   }
 `;

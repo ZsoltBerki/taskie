@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import TaskListElement from '../../components/TaskListElement'
 
-const TaskListView = ({ tasks, selectTask, className }) => {
+const TaskListView = ({ tasks, floatedTask, floatedOverTask,
+                        selectTask, floatTask, className, floatOverTask, dropOver }) => {
   return (
-    <div className={"view-task-list " + className}>
-      {tasks.map((task, id) => (
+    <div
+      className={"view-task-list " + className}
+    >
+      {tasks.map(task => (
         <TaskListElement
-          key={id}
+          key={task.id}
           title={task.title}
           onClick={() => selectTask(task)}
+          onDragStart={() => floatTask(task.id)}
+          onDragEnter={() => floatOverTask(task.id)}
+          onDragEnd={() => {dropOver(floatedOverTask);}}
+          isDraggedOver={task.id === floatedOverTask}
+          isDragged={task.id === floatedTask}
         />
       ))}
     </div>
@@ -20,7 +27,12 @@ const TaskListView = ({ tasks, selectTask, className }) => {
 
 TaskListView.propTypes = {
   tasks: PropTypes.any,
+  floatedTask: PropTypes.any,
+  floatedOverTask: PropTypes.any,
   selectTask: PropTypes.func,
+  floatTask: PropTypes.func,
+  floatOverTask: PropTypes.func,
+  dropOver: PropTypes.func,
   className: PropTypes.string
 };
 
