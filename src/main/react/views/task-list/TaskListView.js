@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TaskListElement from '../../components/TaskListElement'
 
-const TaskListView = ({ tasks, floatedTask, floatedOverTask,
-                        selectTask, floatTask, className, floatOverTask, dropOver }) => {
+const TaskListView = ({ tasks, draggedTaskId, draggedOverTaskId,
+                        select, drag, className, dragOver, dropOn }) => {
   return (
     <div
       className={"view-task-list " + className}
@@ -13,12 +13,12 @@ const TaskListView = ({ tasks, floatedTask, floatedOverTask,
         <TaskListElement
           key={task.id}
           title={task.title}
-          onClick={() => selectTask(task)}
-          onDragStart={() => floatTask(task.id)}
-          onDragEnter={() => floatOverTask(task.id)}
-          onDragEnd={() => {dropOver(floatedOverTask);}}
-          isDraggedOver={task.id === floatedOverTask}
-          isDragged={task.id === floatedTask}
+          onClick={() => select(task.id)}
+          onDragStart={() => drag(task.id)}
+          onDragEnter={() => dragOver(task.id)}
+          onDragEnd={() => {dropOn(draggedOverTaskId);}}
+          isDraggedOver={task.id === draggedOverTaskId}
+          isDragged={task.id === draggedTaskId}
         />
       ))}
     </div>
@@ -26,13 +26,13 @@ const TaskListView = ({ tasks, floatedTask, floatedOverTask,
 };
 
 TaskListView.propTypes = {
-  tasks: PropTypes.any,
-  floatedTask: PropTypes.any,
-  floatedOverTask: PropTypes.any,
-  selectTask: PropTypes.func,
-  floatTask: PropTypes.func,
-  floatOverTask: PropTypes.func,
-  dropOver: PropTypes.func,
+  tasks: PropTypes.array,
+  draggedTaskId: PropTypes.object,
+  draggedOverTaskId: PropTypes.object,
+  select: PropTypes.func,
+  drag: PropTypes.func,
+  dragOver: PropTypes.func,
+  dropOn: PropTypes.func,
   className: PropTypes.string
 };
 

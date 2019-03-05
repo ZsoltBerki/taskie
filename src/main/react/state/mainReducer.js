@@ -5,69 +5,71 @@ import dummyTasks from './dummy/dummyTasks.json'
 
 const initialState = {
   tasks: dummyTasks,
-  selectedTask: null,
-  floatedTask: null,
-  floatedOverTask: null
+  selectedTaskId: null,
+  draggedTaskId: null,
+  draggedOverTaskId: null
 };
 
 const SELECT_TASK = 'SELECT_TASK';
-const FLOAT_TASK = 'FLOAT_TASK';
-const FLOATED_OVER = 'FLOATED_OVER';
-const DROP_ON = 'DROP_ON';
+const DRAG_TASK = 'DRAG_TASK';
+const DRAG_OVER_TASK = 'DRAG_OVER_TASK';
+const DROP_ON_TASK = 'DROP_ON_TASK';
 
 const ACTION_HANDLERS = {
   [SELECT_TASK]: (state, { payload }) => ({
     ...state,
-    selectedTask: payload
+    selectedTaskId: payload
   }),
-  [FLOAT_TASK]: (state, { payload }) => ({
+  [DRAG_TASK]: (state, { payload }) => ({
     ...state,
-    floatedTask: payload
+    draggedTaskId: payload
   }),
-  [FLOATED_OVER]: (state, { payload }) => ({
+  [DRAG_OVER_TASK]: (state, { payload }) => ({
     ...state,
-    floatedOverTask: payload
+    draggedOverTaskId: payload
   }),
-  [DROP_ON]: (state, { payload }) => {
+  [DROP_ON_TASK]: (state, { payload }) => {
 
-    if(payload === state.floatedTask) {
+    const droppedOnTaskId = payload;
+
+    if(droppedOnTaskId === state.draggedTaskId) {
       return {
         ...state,
-        floatedTask: null,
-        floatedOverTask: null
+        draggedTaskId: null,
+        draggedOverTaskId: null
       }
     }
 
-    const floatedTaskFull = state.tasks.find(task => task.id === state.floatedTask);
+    const draggedTask = state.tasks.find(task => task.id === state.draggedTaskId);
 
-    const filteredTaskList = state.tasks
-      .filter(task => task.id !== state.floatedTask);
+    const untouchedTasks = state.tasks
+      .filter(task => task.id !== state.draggedTaskId);
 
-    const indexOfDroppedOnTask = filteredTaskList
-      .findIndex(task => task.id === payload);
+    const indexOfDroppedOnTask = untouchedTasks
+      .findIndex(task => task.id === droppedOnTaskId);
 
-    const firstHalf = filteredTaskList.slice(0, indexOfDroppedOnTask);
-    const secondHalf = filteredTaskList.slice(indexOfDroppedOnTask, filteredTaskList.length);
+    const firstHalf = untouchedTasks.slice(0, indexOfDroppedOnTask);
+    const secondHalf = untouchedTasks.slice(indexOfDroppedOnTask, untouchedTasks.length);
 
     return {
       ...state,
-      tasks: firstHalf.concat([floatedTaskFull]).concat(secondHalf),
-      floatedTask: null,
-      floatedOverTask: null
+      tasks: firstHalf.concat([draggedTask]).concat(secondHalf),
+      draggedTaskId: null,
+      draggedOverTaskId: null
   }}
 };
 
-export const selectTask = task => dispatch => {
+export const select = task => dispatch => {
   dispatch(ca(SELECT_TASK)(task));
 };
-export const dropOver = task => dispatch => {
-  dispatch(ca(DROP_ON)(task));
+export const dropOn = task => dispatch => {
+  dispatch(ca(DROP_ON_TASK)(task));
 };
-export const floatTask = task => dispatch => {
-  dispatch(ca(FLOAT_TASK)(task));
+export const drag = task => dispatch => {
+  dispatch(ca(DRAG_TASK)(task));
 };
-export const floatOverTask = task => dispatch => {
-  dispatch(ca(FLOATED_OVER)(task));
+export const dragOver = task => dispatch => {
+  dispatch(ca(DRAG_OVER_TASK)(task));
 };
 
 export default createReducer(ACTION_HANDLERS, initialState);

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TaskDetailView from './TaskDetailView';
 
 const mapStateToProps = state => ({
-  task: state.main.selectedTask
+  task: state.main.tasks.find(task => task.id === state.main.selectedTaskId)
 });
 
 const mapActionCreator = {
