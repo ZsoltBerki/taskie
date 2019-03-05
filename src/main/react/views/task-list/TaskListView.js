@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TaskListElement from '../../components/TaskListElement'
+import TaskListElement from '../../components/TaskListElement';
 
-const TaskListView = ({ tasks, draggedTaskId, draggedOverTaskId,
-                        select, drag, className, dragOver, dropOn }) => {
+const TaskListView = ({
+  tasks,
+  draggedTaskId,
+  draggedOverTaskId,
+  select,
+  drag,
+  className,
+  dragOver,
+  dropOn
+}) => {
   return (
-    <div
-      className={"view-task-list " + className}
-    >
+    <div className={'view-task-list ' + className}>
       {tasks.map(task => (
         <TaskListElement
           key={task.id}
@@ -16,7 +22,9 @@ const TaskListView = ({ tasks, draggedTaskId, draggedOverTaskId,
           onClick={() => select(task.id)}
           onDragStart={() => drag(task.id)}
           onDragEnter={() => dragOver(task.id)}
-          onDragEnd={() => {dropOn(draggedOverTaskId);}}
+          onDragEnd={() => {
+            dropOn(draggedOverTaskId);
+          }}
           isDraggedOver={task.id === draggedOverTaskId}
           isDragged={task.id === draggedTaskId}
         />
@@ -37,5 +45,5 @@ TaskListView.propTypes = {
 };
 
 export default styled(TaskListView)`
-    margin-right: 30px;
+  margin-right: 30px;
 `;

@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import MainView from './MainView';
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
-const mapActionCreator = {
-};
+const mapActionCreator = {};
 
 export default connect(
   mapStateToProps,

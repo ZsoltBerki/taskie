@@ -2,12 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TaskListElement = ({title, className, onClick,
-                           isDragged, isDraggedOver,
-                           onDragStart, onDragEnd, onDragEnter}) => {
+const TaskListElement = ({
+  title,
+  className,
+  onClick,
+  isDragged,
+  isDraggedOver,
+  onDragStart,
+  onDragEnd,
+  onDragEnter
+}) => {
   return (
     <div
-      className={`droppable task-list-element ${className} ${isDragged ? 'dragged' : ''} ${isDraggedOver ? 'dragged-over' : ''}`}
+      className={`droppable task-list-element ${className} ${
+        isDragged ? 'dragged' : ''
+      } ${isDraggedOver ? 'dragged-over' : ''}`}
       onClick={onClick}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
@@ -16,7 +25,7 @@ const TaskListElement = ({title, className, onClick,
     >
       <span>{title}</span>
     </div>
-  )
+  );
 };
 
 TaskListElement.propTypes = {
@@ -36,22 +45,22 @@ export default styled(TaskListElement)`
   padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  box-shadow: inset 0px 0px 2px 0px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
   margin: 5px;
-  
+
   &:hover {
-    background-color: #eeeeee
+    background-color: #eeeeee;
   }
-  
-  &.dragged{
-    background-color: #eeeeee
+
+  &.dragged {
+    background-color: #eeeeee;
   }
-  
-  &.dragged-over{
+
+  &.dragged-over {
     margin-top: 38px;
     background: none;
     &:hover {
-      background-color: #none
+      background-color: #none;
     }
   }
 `;

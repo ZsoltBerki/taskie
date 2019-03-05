@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const GeneralStyles = ({children, className}) => {
-  return <div className={className}>
-    {children}
-  </div>
+const GeneralStyles = ({ children, className }) => {
+  return <div className={className}>{children}</div>;
 };
 
 GeneralStyles.propTypes = {
@@ -14,5 +12,5 @@ GeneralStyles.propTypes = {
 };
 
 export default styled(GeneralStyles)`
-   font-family: arial;
+  font-family: arial;
 `;

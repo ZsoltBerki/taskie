@@ -9,7 +9,10 @@ const mapStateToProps = state => ({
 });
 
 const mapActionCreator = {
-  select, drag, dragOver, dropOn
+  select,
+  drag,
+  dragOver,
+  dropOn
 };
 
 export default connect(
